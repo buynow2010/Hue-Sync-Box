@@ -1,5 +1,6 @@
 {
     "name": "HUE声光同步器",
-    "homeassistant": "2025.2.0",
+    "content_in_root": false,
+    "homeassistant": "2024.2.0",
     "render_readme": true
 }
