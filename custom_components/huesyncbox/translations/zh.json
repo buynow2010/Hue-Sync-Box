@@ -1,0 +1,236 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "设备已配置",
+      "reauth_successful": "已成功重新链接 Philips Hue Play HDMI Sync Box",
+      "reconfigure_successful": "已成功重新配置 Philips Hue Play HDMI Sync Box",
+      "connection_failed": "设置失败"
+    },
+    "error": {
+      "cannot_connect": "连接失败",
+      "invalid_auth": "身份验证无效",
+      "unknown": "未知错误"
+    },
+    "step": {
+      "configure": {
+        "title": "输入设备信息",
+        "description": "详细信息可以在主 Hue 应用中找到。\n\n选择“同步”标签页并确保已选择 Philips Hue Play HDMI Syncbox。然后点击顶部的 … 菜单，依次选择“设备”和“网络信息”以获取 IP 地址，再选择“设备信息”以获取标识符。",
+        "data": {
+          "host": "IP 地址（例如 192.168.1.123）",
+          "unique_id": "标识符（例如 C42996000000）"
+        }
+      },
+      "reauth_confirm": {
+        "title": "重新验证集成",
+        "description": "需要重新链接 Philips Hue Play HDMI Sync Box"
+      },
+      "zeroconf_confirm": {
+        "title": "发现设备",
+        "description": "需要链接 Philips Hue Play HDMI Sync Box。点击“下一步”开始链接流程。"
+      }
+    },
+    "progress": {
+      "wait_for_button": "按住 Philips Hue Play HDMI Sync Box 上的按钮数秒，直到指示灯绿色闪烁以完成链接。"
+    }
+  },
+  "entity": {
+    "number": {
+      "brightness": {
+        "name": "亮度"
+      }
+    },
+    "select": {
+      "hdmi_input": {
+        "name": "HDMI 输入"
+      },
+      "entertainment_area": {
+        "name": "娱乐区域"
+      },
+      "intensity": {
+        "name": "强度",
+        "state": {
+          "subtle": "柔和",
+          "moderate": "适中",
+          "high": "高",
+          "intense": "强烈"
+        }
+      },
+      "led_indicator_mode": {
+        "name": "LED 指示灯",
+        "state": {
+          "normal": "正常",
+          "off": "关闭",
+          "dimmed": "变暗"
+        }
+      },
+      "sync_mode": {
+        "name": "同步模式",
+        "state": {
+          "video": "视频",
+          "music": "音乐",
+          "game": "游戏"
+        }
+      }
+    },
+    "sensor": {
+      "bridge_unique_id": {
+        "name": "桥接器 ID"
+      },
+      "ip_address": {
+        "name": "IP 地址"
+      },
+      "bridge_connection_state": {
+        "name": "桥接器连接",
+        "state": {
+          "uninitialized": "未初始化",
+          "disconnected": "已断开",
+          "connecting": "正在连接",
+          "unauthorized": "未授权",
+          "connected": "已连接",
+          "invalidgroup": "分组无效",
+          "streaming": "正在流式传输",
+          "busy": "忙碌"
+        }
+      },
+      "hdmi1_status": {
+        "name": "HDMI1 状态",
+        "state": {
+          "unplugged": "未插入",
+          "plugged": "已插入",
+          "linked": "已链接",
+          "unknown": "未知"
+        }
+      },
+      "hdmi2_status": {
+        "name": "HDMI2 状态",
+        "state": {
+          "unplugged": "未插入",
+          "plugged": "已插入",
+          "linked": "已链接",
+          "unknown": "未知"
+        }
+      },
+      "hdmi3_status": {
+        "name": "HDMI3 状态",
+        "state": {
+          "unplugged": "未插入",
+          "plugged": "已插入",
+          "linked": "已链接",
+          "unknown": "未知"
+        }
+      },
+      "hdmi4_status": {
+        "name": "HDMI4 状态",
+        "state": {
+          "unplugged": "未插入",
+          "plugged": "已插入",
+          "linked": "已链接",
+          "unknown": "未知"
+        }
+      },
+      "wifi_strength": {
+        "name": "Wi‑Fi 质量",
+        "state": {
+          "not_connected": "未连接",
+          "weak": "较弱",
+          "fair": "一般",
+          "good": "良好",
+          "excellent": "优秀"
+        }
+      },
+      "content_info": {
+        "name": "内容信息"
+      }
+    },
+    "switch": {
+      "power": {
+        "name": "电源"
+      },
+      "light_sync": {
+        "name": "灯光同步"
+      },
+      "dolby_vision_compatibility": {
+        "name": "Dolby Vision 兼容性"
+      }
+    }
+  },
+  "selector": {
+    "modes": {
+      "options": {
+        "video": "视频",
+        "music": "音乐",
+        "game": "游戏"
+      }
+    },
+    "intensities": {
+      "options": {
+        "subtle": "柔和",
+        "moderate": "适中",
+        "high": "高",
+        "intense": "强烈"
+      }
+    },
+    "inputs": {
+      "options": {
+        "input1": "HDMI 1",
+        "input2": "HDMI 2",
+        "input3": "HDMI 3",
+        "input4": "HDMI 4"
+      }
+    }
+  },
+  "services": {
+    "set_bridge": {
+      "name": "设置桥接器",
+      "description": "设置 Philips Hue Play HDMI Syncbox 所使用的桥接器。请注意，更改盒子所使用的桥接器需要一段时间（大约 15 秒）。桥接器更改完成后，如果连接状态为 `invalidgroup` 而不是 `connected`，可能需要重新选择 `entertainment_area`。",
+      "fields": {
+        "bridge_id": {
+          "name": "桥接器 ID",
+          "description": "桥接器的 ID，为 16 位十六进制代码。"
+        },
+        "bridge_username": {
+          "name": "用户名",
+          "description": "桥接器上有效的用户名（应用密钥）。一串较长的随机字符。"
+        },
+        "bridge_clientkey": {
+          "name": "客户端密钥",
+          "description": "与用户名对应的客户端密钥，为 32 位十六进制代码。"
+        }
+      }
+    },
+    "set_sync_state": {
+      "name": "设置灯光同步状态",
+      "description": "通过一次调用控制 Philips Hue Play HDMI Syncbox 的完整灯光同步状态。",
+      "fields": {
+        "power": {
+          "name": "电源",
+          "description": "开启或关闭盒子。"
+        },
+        "sync": {
+          "name": "灯光同步",
+          "description": "设置灯光同步开启或关闭。设置为开启时也会打开盒子。"
+        },
+        "brightness": {
+          "name": "亮度",
+          "description": "要设置的亮度值。"
+        },
+        "mode": {
+          "name": "模式",
+          "description": "要设置的模式。设置模式会打开盒子并开始灯光同步。"
+        },
+        "intensity": {
+          "name": "强度",
+          "description": "要设置的强度。"
+        },
+        "input": {
+          "name": "输入",
+          "description": "要选择的输入。"
+        },
+        "entertainment_area": {
+          "name": "娱乐区域",
+          "description": "要选择的娱乐区域，名称必须与实际完全一致。"
+        }
+      }
+    }
+  }
+}

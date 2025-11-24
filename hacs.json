@@ -1,0 +1,7 @@
+{
+    "name": "飞利浦 Hue Play HDMI 同步盒",
+    "homeassistant": "2025.2.0",
+    "render_readme": true,
+    "zip_release": true,
+    "filename": "huesyncbox.zip"
+}
