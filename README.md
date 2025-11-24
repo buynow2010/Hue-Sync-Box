@@ -1,9 +1,9 @@
-# 飞利浦 Hue Play HDMI 同步盒
+# HUE声光同步器
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.2%2B-green.svg)](https://www.home-assistant.io/)
 
-飞利浦 Hue Play HDMI 同步盒的 Home Assistant 自定义集成，支持 4K 和 8K 型号。
+飞利浦 Hue Play HDMI 同步盒的 Home Assistant 中文集成，支持 4K 和 8K 型号。
 
 **原版仓库**: [mvdwetering/huesyncbox](https://github.com/mvdwetering/huesyncbox)
 
@@ -76,7 +76,7 @@
 3. 添加仓库地址：`https://github.com/buynow2010/Hue-Sync-Box`
 4. 类别选择：**集成（Integration）**
 5. 点击 **添加**
-6. 在 HACS 中搜索 "**飞利浦 Hue Play HDMI 同步盒**"
+6. 在 HACS 中搜索 "**HUE声光同步器**"
 7. 点击 **下载**
 8. 重启 Home Assistant
 
@@ -98,7 +98,7 @@
 
 1. 进入 **设置** → **设备与服务**
 2. 点击右下角 **+ 添加集成**
-3. 搜索 "**飞利浦 Hue Play HDMI 同步盒**" 或 "**Philips Hue Sync Box**"
+3. 搜索 "**HUE声光同步器**" 或 "**Philips Hue Sync Box**"
 4. 按照提示完成配置
 
 > **注意**: 请先使用飞利浦 Hue 官方 App 完成同步盒的初始设置，确保设备正常工作后再添加到 Home Assistant。
