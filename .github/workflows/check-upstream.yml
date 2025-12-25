@@ -1,0 +1,68 @@
+name: 检查上游更新
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 检查上游更新
+        id: check
+        run: |
+          UPSTREAM_REPO="mvdwetering/huesyncbox"
+          
+          LATEST=$(curl -s "https://api.github.com/repos/${UPSTREAM_REPO}/releases/latest" | jq -r '.tag_name // empty')
+          
+          if [ -z "$LATEST" ]; then
+            LATEST=$(curl -s "https://api.github.com/repos/${UPSTREAM_REPO}/tags" | jq -r '.[0].name // empty')
+          fi
+          
+          CURRENT=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/-zh$//' || echo "none")
+          
+          echo "upstream=$LATEST" >> $GITHUB_OUTPUT
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+          echo "上游: $LATEST, 当前: $CURRENT"
+          
+          if [ "$LATEST" != "$CURRENT" ] && [ -n "$LATEST" ]; then
+            echo "needs_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "needs_update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 创建 Issue
+        if: steps.check.outputs.needs_update == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const upstream = '${{ steps.check.outputs.upstream }}';
+            const current = '${{ steps.check.outputs.current }}';
+            
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: '上游更新'
+            });
+            
+            if (issues.data.find(i => i.title.includes(upstream))) return;
+            
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🔄 上游更新: Hue Sync Box ${upstream}`,
+              body: `## 检测到上游更新\n\n` +
+                    `| 项目 | 版本 |\n|------|------|\n` +
+                    `| 上游最新 | \`${upstream}\` |\n` +
+                    `| 当前汉化 | \`${current}-zh\` |\n\n` +
+                    `### 原版 Release\n` +
+                    `🔗 https://github.com/mvdwetering/huesyncbox/releases\n\n` +
+                    `---\n*自动检测*`,
+              labels: ['上游更新', '待处理']
+            });
